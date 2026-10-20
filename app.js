@@ -9,8 +9,8 @@
 
 const taskInput = document.getElementById('new-task'); //Add a new task.
 const addButton = document.getElementsByTagName('button')[0]; //first button
-const incompleteTaskHolder = document.getElementById('incompleteTasks'); //ul of #incompleteTasks
-const completedTasksHolder = document.getElementById('completed-tasks'); //completed-tasks
+const incompleteTaskList = document.getElementById('incomplete-tasks'); //ul of #incompleteTasks
+const completedTasksList = document.getElementById('completed-tasks'); //completed-tasks
 
 //New task list item
 const createNewTaskElement = function (taskString) {
@@ -59,7 +59,7 @@ const addTask = function () {
   const listItem = createNewTaskElement(taskInput.value);
 
   //Append listItem to incompleteTaskHolder
-  incompleteTaskHolder.appendChild(listItem);
+  incompleteTaskList.appendChild(listItem);
   bindTaskEvents(listItem);
 
   taskInput.value = '';
@@ -100,7 +100,7 @@ const deleteTask = function () {
 function toggleTaskStatus() {
   const listItem = this.parentNode;
 
-  this.checked ? completedTasksHolder.appendChild(listItem) : incompleteTaskHolder.appendChild(listItem);
+  this.checked ? completedTasksList.appendChild(listItem) : incompleteTaskList.appendChild(listItem);
 }
 
 //The glue to hold it all together.
@@ -121,15 +121,15 @@ function bindTaskEvents(taskListItem) {
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
-for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
+for (let i = 0; i < incompleteTaskList.children.length; i++) {
   //bind events to list items chldren(tasksCompleted)
-  bindTaskEvents(incompleteTaskHolder.children[i]);
+  bindTaskEvents(incompleteTaskList.children[i]);
 }
 
 //cycle over completedTasksHolder ul list items
-for (let i = 0; i < completedTasksHolder.children.length; i++) {
+for (let i = 0; i < completedTasksList.children.length; i++) {
   //bind events to list items chldren(tasksIncompleted)
-  bindTaskEvents(completedTasksHolder.children[i]);
+  bindTaskEvents(completedTasksList.children[i]);
 }
 
 // Issues with usability don't get seen until they are in front of a human tester.
