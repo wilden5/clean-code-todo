@@ -54,7 +54,6 @@ const createNewTaskElement = function (taskString) {
 };
 
 const addTask = function () {
-  console.log('Add Task...');
   //Create a new list item with the text from the #new-task:
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
@@ -69,9 +68,6 @@ const addTask = function () {
 //Edit an existing task.
 
 const editTask = function () {
-  console.log('Edit Task...');
-  console.log("Change 'edit' to 'save'");
-
   const listItem = this.parentNode;
 
   const editInput = listItem.querySelector('input[type=text]');
@@ -95,8 +91,6 @@ const editTask = function () {
 
 //Delete task.
 const deleteTask = function () {
-  console.log('Delete Task...');
-
   const listItem = this.parentNode;
   const ul = listItem.parentNode;
   //Remove the parent list item from the ul.
@@ -105,8 +99,6 @@ const deleteTask = function () {
 
 //Mark task completed
 function taskCompleted() {
-  console.log('Complete Task...');
-
   //Append the task list item to the #completed-tasks
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
@@ -114,7 +106,6 @@ function taskCompleted() {
 }
 
 function taskIncomplete() {
-  console.log('Incomplete Task...');
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
@@ -123,19 +114,12 @@ function taskIncomplete() {
   bindTaskEvents(listItem, taskCompleted);
 }
 
-const ajaxRequest = function () {
-  console.log('AJAX Request');
-};
-
 //The glue to hold it all together.
 
 //Set the click handler to the addTask function.
-addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
-addButton.addEventListener('click', ajaxRequest);
 
 function bindTaskEvents(taskListItem, checkBoxEventHandler) {
-  console.log('bind list item events');
   //select ListItems children
   const checkBox = taskListItem.querySelector('input[type=checkbox]');
   const editButton = taskListItem.querySelector('button.edit');
@@ -147,7 +131,7 @@ function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   deleteButton.onclick = deleteTask;
   //Bind taskCompleted to checkBoxEventHandler.
   checkBox.onchange = checkBoxEventHandler;
-};
+}
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
