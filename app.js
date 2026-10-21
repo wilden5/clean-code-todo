@@ -7,14 +7,20 @@ const createElement = (tagName, props = {}) => {
   const element = document.createElement(tagName);
   Object.assign(element, props);
   return element;
-}
+};
 
 const createNewTaskElement = function (taskString) {
   const listItem = createElement('li');
   const checkBox = createElement('input', { type: 'checkbox' });
-  const label = createElement('label', { className: 'task', innerText: taskString });
+  const label = createElement('label', {
+    className: 'task',
+    innerText: taskString,
+  });
   const editInput = createElement('input', { type: 'text', className: 'task' });
-  const editButton = createElement('button', { innerText: 'Edit', className: 'edit' });
+  const editButton = createElement('button', {
+    innerText: 'Edit',
+    className: 'edit',
+  });
   const deleteButton = createElement('button', { className: 'delete' });
   const deleteButtonImg = createElement('img', { src: './remove.svg' });
 
@@ -63,7 +69,9 @@ const deleteTask = function () {
 function toggleTaskStatus() {
   const listItem = this.parentNode;
 
-  this.checked ? completedTasksList.appendChild(listItem) : incompleteTaskList.appendChild(listItem);
+  this.checked
+    ? completedTasksList.appendChild(listItem)
+    : incompleteTaskList.appendChild(listItem);
 }
 
 addButton.addEventListener('click', addTask);
